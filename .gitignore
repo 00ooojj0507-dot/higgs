@@ -1,0 +1,11 @@
+# 비밀 키 — 절대 커밋하지 마세요
+.env
+
+# 생성된 이미지
+outputs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
