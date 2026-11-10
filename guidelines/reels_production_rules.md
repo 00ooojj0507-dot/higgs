@@ -21,7 +21,7 @@ Where two rules seem to conflict, the more specific section wins.
 
 ## 2. Length & Structure
 
-- **Story/explainer reels: 40–55s. Single-fact reels: 20–30s. Never over 60s.**
+- **Story/explainer reels: 40–60s. Single-fact reels: 20–30s. Never over 60s.**
 - Build a story arc, not a fact list: context (who/when/why it matters) → story → interpretations/reveals → closing question.
 - 3–4 key facts maximum. Each fact must connect to the one before it; start each new beat with a link word ("그래서", "근데", "그러니까", "문제는").
 - Cut anything that doesn't serve the hook's payoff. Fewer facts, held longer, beat many facts rushed.
@@ -181,7 +181,7 @@ Where two rules seem to conflict, the more specific section wins.
 ## 15. After Posting
 
 - 48h after posting, I'll share: 3-second hold rate, skip rate, average watch time, sends, saves, non-follower reach share.
-- Log them in `reels_log.md` (topic, hook type, length, metrics, what to change).
+- Log them in `guidelines/reels_log.md` (topic, hook type, length, metrics, what to change).
 - Decision rules for the next reel:
   - 3s hold rate < 60% (or high skip rate) → change the hook type (question ↔ surprising fact ↔ payoff promise).
   - Average watch time < 50% of length → cut the next reel by 5–10s.
