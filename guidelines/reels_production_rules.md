@@ -1,4 +1,4 @@
-# Instagram Reels Production Rules (@space_scraper_) — v3
+# Instagram Reels Production Rules (@space_scraper_) — v3.1
 
 v3 replaces the flat "Navy Retro" look with the **Blueprint Print** look: navy blueprint paper, one-ink rough line art, halftone-dot shading, fine paper grain.
 This file is self-contained: it is the only file the reels project needs. Where two rules seem to conflict, the more specific section wins.
@@ -25,7 +25,7 @@ This file is self-contained: it is the only file the reels project needs. Where 
 - Build a story arc, not a fact list: context (who/when/why it matters) → story → interpretations/reveals → closing question.
 - 3–4 key facts maximum. Each fact must connect to the one before it; start each new beat with a link word ("그래서", "근데", "그러니까", "문제는").
 - Cut anything that doesn't serve the hook's payoff. Fewer facts, held longer, beat many facts rushed.
-- **Loop:** the closing card keeps the hook frame's background and main graphic in the same position. The @space_scraper_ handle drops out in the last 0.3s so the final frame matches frame 1.
+- **Loop:** the closing card keeps the hook frame's background and main graphic in the same position. In the last 0.3s, hard-cut the closing question, CTA and @space_scraper_ handle out and the hook title back in, so the final frame is identical to frame 0.
 
 ---
 
@@ -34,7 +34,7 @@ This file is self-contained: it is the only file the reels project needs. Where 
 - 1080x1920 (9:16), 30fps.
 - Video: H.264 High, `yuv420p`, 10–12 Mbps (grain and halftone need the higher end), `-movflags +faststart`.
 - Audio: AAC, 48 kHz, ≥192 kbps.
-- Build with the colornote.py approach (code-rendered graphics). No Gemini/Veo AI video for reels.
+- Build with code-rendered graphics (my colornote.py approach; if that script isn't attached, write equivalent Python with Pillow/cairo + ffmpeg). No Gemini/Veo AI video for reels.
 - No watermarks or third-party app logos.
 
 ---
@@ -113,7 +113,7 @@ This file is self-contained: it is the only file the reels project needs. Where 
 ## 11. Ending (max 3.5s)
 
 - Closing card: central question → ONE CTA → @space_scraper_.
-- Layout follows the loop rule in section 2 (same background and graphic position as the hook frame).
+- Layout follows the loop rule in section 2 (same background and graphic position as the hook frame; the last 0.3s returns to the hook title).
 - Choose the CTA by reel type:
   - Shareable/surprising → send ("친구에게 보내주세요")
   - Reference/tips → save ("저장해두세요")
@@ -127,13 +127,14 @@ This file is self-contained: it is the only file the reels project needs. Where 
 - A blueprint (청사진) printed like a 1960s two-color magazine illustration: **navy paper, one bright ink, halftone dots for tone, slightly rough hand-inked lines.**
 - Calm and restrained overall; the texture gives warmth, not noise.
 - Style reference: a vintage two-color print portrait (blue ink on yellow paper, halftone shading, rough brush outlines, white offset underlay). Our reels invert it: **bright ink on navy paper.**
-- Approved sample frame (repo copy: `docs/style/reel_sample_wall.jpg`): navy grain background, ivory title with the key word on a yuzu box, a `#222F4C` rounded panel with a rough yuzu outline, a navy hand silhouette with a yuzu outline, halftone bands along the panel's bottom and right edges, a radial halftone halo behind the hand, a few loose construction dashes.
+- Approved sample frame (`reel_sample_wall.jpg`, uploaded to this project as the visual reference; match it when in doubt): navy grain background, ivory title with the key word on a yuzu box, a `#222F4C` rounded panel with a rough yuzu outline, a navy hand silhouette with a yuzu outline, halftone bands along the panel's bottom and right edges, a radial halftone halo behind the hand, a few loose construction dashes.
 
 ### Palette (HEX)
 - Paper (background): Deep Navy `#11192D`
 - Panels / secondary planes: `#222F4C`
 - Text: Ivory `#F4EEDC` (secondary text: `#A9AFC0`)
-- **Ink (accent): ONE per reel.** Default Yuzu `#F2C230`. Alternatives by topic: Custard `#F3D68C` or Soft Red `#E2614A`. Never mix inks in one reel. The emphasis box uses the same ink.
+- **Ink (accent): ONE per reel.** Default Yuzu `#F2C230`. Alternatives by topic: Custard `#F3D68C` or Soft Red `#E2614A`. Never mix inks in one reel.
+- **Soft Red check:** red halftone on navy has low contrast. For a Soft Red reel, render one test frame first and check it at 1/4 scale; if the halftone doesn't read, raise minimum dot coverage to ~30% and use a solid red line around the shape. The emphasis box uses the same ink.
 - Ratio per frame: navy tones ~75–80%, ink (lines + halftone + fills) ~20–25%, ivory mainly for text.
 
 ### Line art (ink)
@@ -158,7 +159,8 @@ This file is self-contained: it is the only file the reels project needs. Where 
 - Halftone never sits behind text or inside the subtitle box.
 
 ### Paper texture
-- One static fine-grain layer over the whole frame (monochrome, ~4–6% opacity, grain size 1–2px). Same texture in every frame; do not animate it (keeps the file sharp and the bitrate sane).
+- One static fine-grain layer (monochrome, ~4–6% opacity, grain size 1–2px). Same texture in every frame; do not animate it (keeps the file sharp and the bitrate sane).
+- **Layer order (bottom → top): background → panels & illustrations → grain → titles, emphasis box, subtitle box & subtitles, @handle.** Graphics get the grain; text never does.
 - Optional speckle: a few tiny ink-colored specks at ≤3% opacity on panels only.
 - No other textures, scratches, or paper folds.
 
@@ -166,11 +168,12 @@ This file is self-contained: it is the only file the reels project needs. Where 
 - **Misregistration offset:** an ivory or `#222F4C` underlay of the main silhouette shifted 4–8px down-right, like the white offset in the reference. Use for a hero moment only.
 
 ### Blueprint motifs (max one per scene)
-- Rounded panel with rough ink outline (the default frame for a main graphic)
-- Faint grid in `#222F4C` (pitch 60px) on the panel
-- Dimension line with end ticks and a short label
-- Corner crop marks
-- Stacked horizontal stripes that thin out
+- The default main-graphic frame — a rounded panel with a rough ink outline, its halftone shadow band and construction marks — is the base layout and does **not** count as a motif.
+- Motifs (pick at most one per scene on top of the base):
+  - Faint grid in `#222F4C` (pitch 60px) on the panel
+  - Dimension line with end ticks and a short label
+  - Corner crop marks
+  - Stacked horizontal stripes that thin out
 
 ### Photos & artworks
 - Images must be public domain or CC0. Credit the source in the last line of the caption.
@@ -231,10 +234,11 @@ No gradients, no text, no small details. Centered with generous empty space. 1:1
 - [ ] Subtitles don't overlap graphics or emphasis captions; nothing in the safe-zone margins
 - [ ] One ink color only (lines, halftone, emphasis box)
 - [ ] Tone shown only with halftone: no smooth gradient, glow, blur or drop shadow
-- [ ] Grain is static and subtle; text and subtitle box are clean
+- [ ] Grain is static and subtle and sits under all text (layer order in section 12)
 - [ ] Lines don't jitter between frames; ≤3 construction marks per scene
 - [ ] Max one main emphasis per scene; types vary between consecutive scenes
-- [ ] Last frame matches frame 1 (loop)
+- [ ] Last frame is identical to frame 0 (hook title back in, closing text out)
+- [ ] Soft Red reels only: test frame checked at 1/4 scale
 - [ ] Cover frame readable in the 3:4 grid crop
 - [ ] Each illustration still reads at 1/4 scale; no raw AI image or untouched stock icon
 - [ ] Loudness: -14 LUFS integrated, true peak ≤ -1 dBTP
