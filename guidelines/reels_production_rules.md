@@ -1,4 +1,4 @@
-# Instagram Reels Production Rules (@space_scraper_) — v2
+# Instagram Reels Production Rules (@space_scraper_) — v2.1
 
 This version resolves the contradictions in v1 and adds safe-zone, TTS-budget, audio and QA specs.
 Where two rules seem to conflict, the more specific section wins.
@@ -138,6 +138,29 @@ Where two rules seem to conflict, the more specific section wins.
   - **People / icons / symbols → bold ivory outlines** (10–14px at 1080 width, round caps and joins). Solid accent fills allowed; small cutouts in navy.
 - One style per scene.
 
+### Illustration sources & pipeline
+Use these sources, in this order of preference:
+
+1. **Open-source line icons → outline style** (people / icons / symbols)
+   - Base set: Lucide (ISC license). SVGs live in `assets/icons/lucide/` with the license file; add new icons there.
+   - Restyle with `tools/icon_restyle.py`: ivory stroke scaled to 12px at 1080 width, round caps/joins, solid accent fill on at most one closed shape, tiny dots become navy cutouts.
+   - Never use an icon as-is: it must get the accent fill or a navy cutout so it reads as channel style, not a stock icon.
+   - Sample sheet: `docs/samples/icon_sheet.png`.
+2. **Gemini app sketches → flat-plane style** (objects / scenes / compositions)
+   - The Gemini Pro subscription has no API access, so this is manual: I generate the sketch in the Gemini app with the prompt template below and upload it to the chat.
+   - The sketch is reference only. Before it goes in a reel it is quantized to the palette (3–4 colors: navy / `#222F4C` / ivory / accent), vectorized, and small fragments removed. A raw AI image never appears in a reel.
+   - No AI mark, gradient, texture or fine detail may survive into the final frame.
+   - Gemini/Veo AI **video** is still not allowed.
+3. **Code-drawn shapes** for everything else, following the style rules above.
+
+**Gemini sketch prompt template** (replace `{subject}`):
+```
+Flat vector illustration of {subject}. Very simple geometric shapes only: circles,
+rectangles, simple polygons. Exactly 3 flat colors, no gradients, no shadows, no texture,
+no outlines, no text. One light plane, one shadow plane, one contrast object.
+Plain solid background. Centered composition with generous empty space. 1:1.
+```
+
 ### Motifs, photos, typography
 - Retro motifs (stacked horizontal stripes that thin out, circles, rounded rectangles): at most one per scene.
 - Photos: rounded corners (24px) with a 12px ivory frame. No color filters unless the scene is about the color change.
@@ -173,6 +196,7 @@ Where two rules seem to conflict, the more specific section wins.
 - [ ] Max one main emphasis per scene; types vary between consecutive scenes
 - [ ] Last frame matches frame 1 (loop)
 - [ ] Cover frame readable in the 3:4 grid crop
+- [ ] Each illustration still reads at 1/4 scale; no raw AI image or untouched stock icon
 - [ ] Loudness: -14 LUFS integrated, true peak ≤ -1 dBTP
 - [ ] Hashtags ≤5, alt text ≤100 characters
 

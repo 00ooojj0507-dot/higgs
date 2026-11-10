@@ -1,3 +1,5 @@
 higgsfield-client
 python-dotenv
 requests
+cairosvg
+Pillow
